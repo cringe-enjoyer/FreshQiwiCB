@@ -16,16 +16,16 @@ import java.util.Date;
 public class WebUtil {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    public static ValCurs sendRequest(Date date, String codeISO) throws IOException, InterruptedException, JAXBException {
+    public static ValCurs sendRequest(Date date) throws IOException, InterruptedException, JAXBException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://www.cbr.ru/scripts/XML_daily.asp?date_req=" + sdf.format(date))).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         String result = response.body();
-        return getFromXML(result, codeISO);
+        return getFromXML(result);
     }
 
-    private static ValCurs getFromXML(String response, String codeISO) throws JAXBException {
+    private static ValCurs getFromXML(String response) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(ValCurs.class);
         return (ValCurs) context.createUnmarshaller().unmarshal(new StringReader(response));
     }

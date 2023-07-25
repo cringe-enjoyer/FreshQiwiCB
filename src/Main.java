@@ -17,7 +17,7 @@ public class Main {
             System.out.println("Введите дату в формате YYYY-MM-DD");
             try {
                 Date date = convertToDate(scanner.nextLine());
-                ValCurs valuta = WebUtil.sendRequest(date, codeISO);
+                ValCurs valuta = WebUtil.sendRequest(date);
                 System.out.println(valuta.getValuta(codeISO));
             } catch (ParseException e) {
                 System.err.println(e);
