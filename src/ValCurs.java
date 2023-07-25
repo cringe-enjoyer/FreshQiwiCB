@@ -36,9 +36,13 @@ public class ValCurs {
         return valutes;
     }
 
+    public void setValutes(ArrayList<Valuta> valutes) {
+        this.valutes = valutes;
+    }
+
     public Valuta getValuta(String codeIso) {
         for (Valuta valuta : valutes) {
-            if (valuta.getId().equals(codeIso))
+            if (valuta.getCharCode().equals(codeIso))
                 return valuta;
         }
         return null;
